@@ -727,12 +727,16 @@ class EPUBProcessor:
             logger.error(f"임베딩 생성 중 오류 발생: {e}")
             return None
 
-    def save_to_database(self, chunks: List[ContentChunk]):
+    def save_to_database(
+        self, chunks: List[ContentChunk], book_title: str, book_author: str
+    ):
         """
         청크들을 데이터베이스에 저장합니다.
 
         Args:
             chunks: 저장할 청크들
+            book_title: 책 제목
+            book_author: 저자
         """
         if not chunks:
             logger.warning("저장할 청크가 없습니다.")
@@ -789,8 +793,8 @@ class EPUBProcessor:
 
                     # 데이터베이스에 삽입
                     insert_query = """
-                    INSERT INTO documents (content, embedding, hierarchy, metadata)
-                    VALUES (%s, %s, %s, %s)
+                    INSERT INTO documents (content, embedding, hierarchy, metadata, book_title, book_author)
+                    VALUES (%s, %s, %s, %s, %s, %s)
                     """
 
                     cursor.execute(
@@ -800,6 +804,8 @@ class EPUBProcessor:
                             embedding,
                             json.dumps(hierarchy, ensure_ascii=False),
                             json.dumps(metadata, ensure_ascii=False),
+                            book_title,
+                            book_author,
                         ),
                     )
 
@@ -826,12 +832,50 @@ class EPUBProcessor:
         logger.info(f"EPUB 파일 처리 시작: {epub_file_path}")
 
         try:
-            # 1. TOC 추출
+            # 1. EPUB 파일 읽기 및 메타데이터 추출
+            book = epub.read_epub(epub_file_path)
+
+            # 책 제목과 저자 추출
+            book_title = None
+            book_author = None
+
+            # 메타데이터에서 제목과 저자 추출
+            if hasattr(book, "metadata") and book.metadata:
+                for namespace, metadata_items in book.metadata.items():
+                    for key, item_list in metadata_items.items():
+                        for item in item_list:
+                            # item은 (text, attributes) 튜플 형태
+                            if isinstance(item, tuple) and len(item) >= 1:
+                                text_content = item[0]
+                                if key.lower() == "title" and text_content:
+                                    book_title = text_content
+                                    print(f"    📖 책 제목 발견: {book_title}")
+                                elif (
+                                    key.lower() in ["creator", "author"]
+                                    and text_content
+                                ):
+                                    book_author = text_content
+                                    print(f"    ✍️ 저자 발견: {book_author}")
+
+            # 책 제목이 없는 경우 파일명에서 추출
+            if not book_title:
+                book_title = Path(epub_file_path).stem
+                logger.warning(
+                    f"메타데이터에서 책 제목을 찾을 수 없어 파일명을 사용합니다: {book_title}"
+                )
+
+            print(f"📖 최종 책 제목: {book_title}")
+            if book_author:
+                print(f"✍️ 최종 저자: {book_author}")
+
+            # 2. TOC 추출
             toc_entries = self.extract_toc_hierarchy(epub_file_path)
 
             if save_toc_json:
                 # TOC를 JSON으로 저장
-                toc_json_path = Path(epub_file_path).with_suffix("_toc.json")
+                toc_json_path = Path(epub_file_path).parent / (
+                    Path(epub_file_path).stem + "_toc.json"
+                )
                 toc_data = []
 
                 for entry in toc_entries:
@@ -849,9 +893,6 @@ class EPUBProcessor:
                     json.dump(toc_data, f, ensure_ascii=False, indent=2)
 
                 logger.info(f"TOC JSON 파일 저장: {toc_json_path}")
-
-            # 2. EPUB 파일 읽기
-            book = epub.read_epub(epub_file_path)
 
             # 3. 각 TOC 항목별로 콘텐츠 추출 및 청킹
             all_chunks = []
@@ -890,9 +931,11 @@ class EPUBProcessor:
                     f"  - 목표 대비 평균: {avg_size / self.target_chunk_size * 100:.1f}%"
                 )
 
-            # 4. 데이터베이스에 저장
+            # 4. 데이터베이스에 저장 (책 제목과 저자 정보 포함)
             if all_chunks:
-                self.save_to_database(all_chunks)
+                self.save_to_database(
+                    all_chunks, book_title=book_title, book_author=book_author
+                )
             else:
                 logger.warning(
                     "생성된 청크가 없어서 데이터베이스에 저장할 내용이 없습니다."

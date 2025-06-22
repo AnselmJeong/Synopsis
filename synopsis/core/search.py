@@ -41,6 +41,8 @@ class SearchResult:
     search_type: str
     semantic_score: Optional[float] = None
     keyword_score: Optional[float] = None
+    book_title: Optional[str] = None
+    book_author: Optional[str] = None
 
 
 class SearchSystem:
@@ -121,7 +123,7 @@ class SearchSystem:
             # 유사도 기반 검색
             cursor.execute(
                 """
-                SELECT id, content, hierarchy, metadata, 
+                SELECT id, content, hierarchy, metadata, book_title, book_author,
                        1 - (embedding <=> %s) as similarity
                 FROM documents
                 WHERE embedding IS NOT NULL 
@@ -134,14 +136,20 @@ class SearchSystem:
 
             results = []
             for row in cursor.fetchall():
+                # JSONB 타입은 이미 파싱되어 딕셔너리로 반환됨
+                hierarchy = row[2] if row[2] else []
+                metadata = row[3] if row[3] else {}
+
                 result = SearchResult(
                     id=row[0],
                     content=row[1],
-                    score=row[4],
-                    hierarchy=row[2],
-                    metadata=row[3],
+                    score=row[6],
+                    hierarchy=hierarchy,
+                    metadata=metadata,
                     search_type="semantic",
-                    semantic_score=row[4],
+                    semantic_score=row[6],
+                    book_title=row[4],
+                    book_author=row[5],
                 )
                 results.append(result)
 
@@ -177,7 +185,7 @@ class SearchSystem:
             # 전문검색 쿼리
             cursor.execute(
                 """
-                SELECT id, content, hierarchy, metadata,
+                SELECT id, content, hierarchy, metadata, book_title, book_author,
                        ts_rank(ts_content, plainto_tsquery('simple', %s)) as rank
                 FROM documents
                 WHERE ts_content @@ plainto_tsquery('simple', %s)
@@ -189,14 +197,20 @@ class SearchSystem:
 
             results = []
             for row in cursor.fetchall():
+                # JSONB 타입은 이미 파싱되어 딕셔너리로 반환됨
+                hierarchy = row[2] if row[2] else []
+                metadata = row[3] if row[3] else {}
+
                 result = SearchResult(
                     id=row[0],
                     content=row[1],
-                    score=row[4],
-                    hierarchy=row[2],
-                    metadata=row[3],
+                    score=row[6],
+                    hierarchy=hierarchy,
+                    metadata=metadata,
                     search_type="keyword",
-                    keyword_score=row[4],
+                    keyword_score=row[6],
+                    book_title=row[4],
+                    book_author=row[5],
                 )
                 results.append(result)
 
@@ -250,7 +264,7 @@ class SearchSystem:
             cursor.execute(
                 """
                 SELECT 
-                    id, content, hierarchy, metadata,
+                    id, content, hierarchy, metadata, book_title, book_author,
                     CASE 
                         WHEN embedding IS NOT NULL THEN
                             (%s * (1 - (embedding <=> %s))) + 
@@ -288,15 +302,21 @@ class SearchSystem:
 
             results = []
             for row in cursor.fetchall():
+                # JSONB 타입은 이미 파싱되어 딕셔너리로 반환됨
+                hierarchy = row[2] if row[2] else []
+                metadata = row[3] if row[3] else {}
+
                 result = SearchResult(
                     id=row[0],
                     content=row[1],
-                    score=row[4],  # combined_score
-                    hierarchy=row[2],
-                    metadata=row[3],
+                    score=row[6],  # combined_score
+                    hierarchy=hierarchy,
+                    metadata=metadata,
                     search_type="hybrid",
-                    semantic_score=row[5],  # semantic_score
-                    keyword_score=row[6],  # keyword_score
+                    semantic_score=row[7],  # semantic_score
+                    keyword_score=row[8],  # keyword_score
+                    book_title=row[4],
+                    book_author=row[5],
                 )
                 results.append(result)
 

@@ -108,6 +108,14 @@ def format_search_results(
 
         # 헤더
         result_lines.append(f"📄 결과 {i} (ID: {result.id})")
+
+        # 책 정보 추가
+        if result.book_title:
+            book_info = f"📚 {result.book_title}"
+            if result.book_author:
+                book_info += f" - {result.book_author}"
+            result_lines.append(book_info)
+
         result_lines.append("=" * 50)
 
         # 점수 정보
@@ -170,6 +178,14 @@ def interactive_result_viewer(results: List[SearchResult]):
         result = results[current_index]
         print("\n" + "=" * 80)
         print(f"📄 결과 {current_index + 1} / {len(results)} (ID: {result.id})")
+
+        # 책 정보 표시
+        if result.book_title:
+            book_info = f"📚 {result.book_title}"
+            if result.book_author:
+                book_info += f" - {result.book_author}"
+            print(book_info)
+
         print("=" * 80)
 
         # 점수 정보

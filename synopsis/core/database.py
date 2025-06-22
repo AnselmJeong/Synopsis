@@ -43,6 +43,8 @@ def setup_database(connection_string="postgresql://user@localhost:5432/postgres"
             ts_content TSVECTOR GENERATED ALWAYS AS (to_tsvector('simple', content)) STORED,
             hierarchy JSONB,
             metadata JSONB,
+            book_title TEXT,
+            book_author TEXT,
             created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
             updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
         );

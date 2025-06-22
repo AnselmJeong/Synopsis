@@ -155,6 +155,10 @@ def search_command(args):
 
     except Exception as e:
         logger.error(f"검색 중 오류 발생: {e}")
+        import traceback
+
+        print(f"상세 오류 정보:")
+        traceback.print_exc()
         return 1
     return 0
 
