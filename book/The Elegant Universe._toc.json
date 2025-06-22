@@ -1,0 +1,350 @@
+[
+  {
+    "title": "Cover",
+    "level": 0,
+    "file_path": "9780393071344_cov.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Cover"
+      }
+    ],
+    "anchor": null
+  },
+  {
+    "title": "Title Page",
+    "level": 0,
+    "file_path": "9780393071344_tp01.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Title Page"
+      }
+    ],
+    "anchor": "tp01"
+  },
+  {
+    "title": "Dedication",
+    "level": 0,
+    "file_path": "9780393071344_ded01.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Dedication"
+      }
+    ],
+    "anchor": "ded01"
+  },
+  {
+    "title": "Copyright",
+    "level": 0,
+    "file_path": "9780393071344_cop01.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Copyright"
+      }
+    ],
+    "anchor": "cop01"
+  },
+  {
+    "title": "Contents",
+    "level": 0,
+    "file_path": "9780393071344_con01.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Contents"
+      }
+    ],
+    "anchor": "con01"
+  },
+  {
+    "title": "Preface",
+    "level": 0,
+    "file_path": "9780393071344_fm01.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Preface"
+      }
+    ],
+    "anchor": "fm01"
+  },
+  {
+    "title": "1. Tied Up with String",
+    "level": 1,
+    "file_path": "9780393071344_ch01.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Part I: The Edge of Knowledge"
+      },
+      {
+        "level": 1,
+        "title": "1. Tied Up with String"
+      }
+    ],
+    "anchor": "ch01"
+  },
+  {
+    "title": "2. Space, Time, and the Eye of the Beholder",
+    "level": 1,
+    "file_path": "9780393071344_ch02.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Part II: The Dilemma of Space, Time, and the Quanta"
+      },
+      {
+        "level": 1,
+        "title": "2. Space, Time, and the Eye of the Beholder"
+      }
+    ],
+    "anchor": "ch02"
+  },
+  {
+    "title": "3. Of Warps and Ripples",
+    "level": 1,
+    "file_path": "9780393071344_ch03.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Part II: The Dilemma of Space, Time, and the Quanta"
+      },
+      {
+        "level": 1,
+        "title": "3. Of Warps and Ripples"
+      }
+    ],
+    "anchor": "ch03"
+  },
+  {
+    "title": "4. Microscopic Weirdness",
+    "level": 1,
+    "file_path": "9780393071344_ch04.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Part II: The Dilemma of Space, Time, and the Quanta"
+      },
+      {
+        "level": 1,
+        "title": "4. Microscopic Weirdness"
+      }
+    ],
+    "anchor": "ch04"
+  },
+  {
+    "title": "5. The Need for a New Theory: General Relativity vs. Quantum Mechanics",
+    "level": 1,
+    "file_path": "9780393071344_ch05.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Part II: The Dilemma of Space, Time, and the Quanta"
+      },
+      {
+        "level": 1,
+        "title": "5. The Need for a New Theory: General Relativity vs. Quantum Mechanics"
+      }
+    ],
+    "anchor": "ch05"
+  },
+  {
+    "title": "6. Nothing but Music: The Essentials of Superstring Theory",
+    "level": 1,
+    "file_path": "9780393071344_ch06.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Part III: The Cosmic Symphony"
+      },
+      {
+        "level": 1,
+        "title": "6. Nothing but Music: The Essentials of Superstring Theory"
+      }
+    ],
+    "anchor": "ch06"
+  },
+  {
+    "title": "7. The \"Super\" in Superstrings",
+    "level": 1,
+    "file_path": "9780393071344_ch07.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Part III: The Cosmic Symphony"
+      },
+      {
+        "level": 1,
+        "title": "7. The \"Super\" in Superstrings"
+      }
+    ],
+    "anchor": "ch07"
+  },
+  {
+    "title": "8. More Dimensions Than Meet the Eye",
+    "level": 1,
+    "file_path": "9780393071344_ch08.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Part III: The Cosmic Symphony"
+      },
+      {
+        "level": 1,
+        "title": "8. More Dimensions Than Meet the Eye"
+      }
+    ],
+    "anchor": "ch08"
+  },
+  {
+    "title": "9. The Smoking Gun: Experimental Signatures",
+    "level": 1,
+    "file_path": "9780393071344_ch09.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Part III: The Cosmic Symphony"
+      },
+      {
+        "level": 1,
+        "title": "9. The Smoking Gun: Experimental Signatures"
+      }
+    ],
+    "anchor": "ch09"
+  },
+  {
+    "title": "10. Quantum Geometry",
+    "level": 1,
+    "file_path": "9780393071344_ch10.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Part IV: String Theory and the Fabric of Spacetime"
+      },
+      {
+        "level": 1,
+        "title": "10. Quantum Geometry"
+      }
+    ],
+    "anchor": "ch10"
+  },
+  {
+    "title": "11. Tearing the Fabric of Space",
+    "level": 1,
+    "file_path": "9780393071344_ch11.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Part IV: String Theory and the Fabric of Spacetime"
+      },
+      {
+        "level": 1,
+        "title": "11. Tearing the Fabric of Space"
+      }
+    ],
+    "anchor": "ch11"
+  },
+  {
+    "title": "12. Beyond Strings: In Search of M-Theory",
+    "level": 1,
+    "file_path": "9780393071344_ch12.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Part IV: String Theory and the Fabric of Spacetime"
+      },
+      {
+        "level": 1,
+        "title": "12. Beyond Strings: In Search of M-Theory"
+      }
+    ],
+    "anchor": "ch12"
+  },
+  {
+    "title": "13. Black Holes: A String/M-Theory Perspective",
+    "level": 1,
+    "file_path": "9780393071344_ch13.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Part IV: String Theory and the Fabric of Spacetime"
+      },
+      {
+        "level": 1,
+        "title": "13. Black Holes: A String/M-Theory Perspective"
+      }
+    ],
+    "anchor": "ch13"
+  },
+  {
+    "title": "14. Reflections on Cosmology",
+    "level": 1,
+    "file_path": "9780393071344_ch14.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Part IV: String Theory and the Fabric of Spacetime"
+      },
+      {
+        "level": 1,
+        "title": "14. Reflections on Cosmology"
+      }
+    ],
+    "anchor": "ch14"
+  },
+  {
+    "title": "15. Prospects",
+    "level": 1,
+    "file_path": "9780393071344_ch15.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Part V: Unification in the Twenty-First Century"
+      },
+      {
+        "level": 1,
+        "title": "15. Prospects"
+      }
+    ],
+    "anchor": "ch15"
+  },
+  {
+    "title": "Notes",
+    "level": 0,
+    "file_path": "9780393071344_en01.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Notes"
+      }
+    ],
+    "anchor": "en01"
+  },
+  {
+    "title": "Glossary of Scientific Terms",
+    "level": 0,
+    "file_path": "9780393071344_bm01.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "Glossary of Scientific Terms"
+      }
+    ],
+    "anchor": "bm01"
+  },
+  {
+    "title": "References and Suggestions for Further Reading",
+    "level": 0,
+    "file_path": "9780393071344_bm02.html",
+    "hierarchy": [
+      {
+        "level": 0,
+        "title": "References and Suggestions for Further Reading"
+      }
+    ],
+    "anchor": "bm02"
+  }
+]
